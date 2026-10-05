@@ -1,0 +1,59 @@
+﻿@model webapppélda.Models.Customer
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container mt-4" style="max-width: 600px">
+    <h2 class="mb-4">Vásárló módosítandó adatai</h2>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+
+    <form asp-controller="Home" asp-action="PutCustomer" method="post" class="needs-validation" novalidate>
+
+        <input type="hidden" asp-for="Id" />
+
+        <div class="mb-3">
+            <label asp-for="Id" class="form-label">Id:</label>
+            <input asp-for="Id" class="form-control" type="number" placeholder="1" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Nev" class="form-label">Név</label>
+            <input asp-for="Nev" class="form-control" placeholder="Minta János" />
+            <span asp-validation-for="Nev" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Cim" class="form-label">Cím</label>
+            <input asp-for="Cim" class="form-control" placeholder="Minta cím" />
+            <span asp-validation-for="Cim" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Email" class="form-label">E-mail</label>
+            <input asp-for="Email" type="email" class="form-control" placeholder="mintajanos@gmail.com" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Telefon" class="form-label">Telefon</label>
+            <input asp-for="Telefon" class="form-control" placeholder="+3620111111" />
+            <span asp-validation-for="Telefon" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Pontszam" class="form-label">Pontszám</label>
+            <input asp-for="Pontszam" type="number" class="form-control" placeholder="100" />
+            <span asp-validation-for="Pontszam" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Módosítások mentése</button>
+    </form>
+</div>
