@@ -54,7 +54,7 @@ namespace webapppélda.Controllers
             TempData["SuccessMessage"] = result;
             return RedirectToAction(nameof(CreateCustomer));
         }
-
+        [HttpGet]
         public IActionResult PutCustomer(int? id)
         {
             Customer vasarlo = new Customer();
@@ -64,14 +64,36 @@ namespace webapppélda.Controllers
             }
             return View(vasarlo);
         }
+
         [HttpPost]
         public IActionResult PutCustomer(Customer customer)
         {
-            string result2 = new VasarloService().PutCustomer(customer);
-            TempData["Success message"] = result2;
+            string result2 = new VasarloService().PutCustomers(customer);
+            TempData["SuccessMessage"] = result2;
             return RedirectToAction(nameof(PutCustomer), new { id = customer.Id });
         }
 
+ 
+        [HttpGet]
+        public IActionResult DeleteCustomer(int? id)
+        {
+            Customer vasarlo = new Customer();
+            if (id.HasValue)
+            {
+                vasarlo = new VasarloService().GetById(id.Value);
+            }
+            return View(vasarlo);
+        }
+
+        [HttpPost]
+        public IActionResult DeleteCustomer(Customer customer)
+        {
+            string result2 = new VasarloService().DeleteCustomer(customer.Id);
+            TempData["SuccessMessage"] = result2;
+
+            
+            return RedirectToAction(nameof(DeleteCustomer));
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

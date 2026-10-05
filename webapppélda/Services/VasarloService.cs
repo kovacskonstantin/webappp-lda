@@ -152,7 +152,7 @@ namespace WebAppPelda.Services
             }
 
         }
-        public string PutCustomer(Customer customer)
+        public string PutCustomers(Customer customer)
         {
             try {
             string connectionString = "SERVER = localhost;" +
@@ -162,7 +162,7 @@ namespace WebAppPelda.Services
             MySqlConnection conn = new MySqlConnection();
             conn.ConnectionString = connectionString;
             conn.Open();
-            string sql = "UPDATE vasarlo SET (Nev = @nev, Cim = @cim, Email = @email, Telefon = @telefon, Pontszam = @pontszam WHERE Id = @id)";
+            string sql = "UPDATE vasarlo SET Nev = @nev, Cim = @cim, Email = @email, Telefon = @telefon, Pontszam = @pontszam WHERE Id = @id";
             MySqlCommand cmd = new MySqlCommand(sql, conn);
             cmd.Parameters.AddWithValue("@nev", (customer as Customer).Nev);
             cmd.Parameters.AddWithValue("@cim", (customer as Customer).Cim);
